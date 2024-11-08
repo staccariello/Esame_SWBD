@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilità Campo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #d3e7da;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 40%;
+            margin: auto;
+            padding: 20px;
+            padding-top: 50px; 
+        }
+        .calendar, .time-slots {
+            margin-top: 20px;
+        }
+        .time-slot {
+            margin-bottom: 10px;
+        }
+         .btn-available {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-disabled {
+            background-color: #cccccc;
+            color: #666666;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+        }
+        .back-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .back-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .back-container span {
+            font-size: 16px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .back-container:hover span {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-container" onclick="window.location.href='home.html';">
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/arrows/go-back-2.png" alt="Back">
+        <span>Back</span>
+    </div>
+
+    <div class="container">
+        <h1>Seleziona una data e orario</h1>
+        <div class="calendar">
+            <input type="date" id="data-prenotazione" />
+        </div>
+        <div class="time-slots" id="time-slots">
+        </div>
+    </div>
+
+<script>
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayString = yyyy + '-' + mm + '-' + dd;
+    document.getElementById('data-prenotazione').min = todayString;
+
+    document.getElementById('data-prenotazione').addEventListener('change', function() {
+        const dataPrenotazione = this.value;
+        const campoId = 'Campo US Open'; 
+
+        if (dataPrenotazione) {
+            const selectedDate = new Date(dataPrenotazione);
+            if (selectedDate < today) {
+                alert("Non puoi prenotare date passate.");
+                return;             }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'php/check_availability.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (this.status === 200) {
+                    document.getElementById('time-slots').innerHTML = this.responseText;
+                }
+            };
+            xhr.send('data=' + dataPrenotazione + '&campo_id=' + campoId);
+        }
+    });
+
+    function bookHour(orario) {
+        const dataPrenotazione = document.getElementById('data-prenotazione').value;
+        const campoId = 'Campo US Open'; 
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'php/book_hour.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+            }
+        };
+        // Passaggio corretto dei parametri nella request
+        xhr.send('data=' + dataPrenotazione + '&orario=' + orario + '&campo_id=' + campoId);
+    }
+</script>
+
+</body>
+</html>

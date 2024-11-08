@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi Torneo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .back-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .back-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .back-container span {
+            font-size: 16px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .back-container:hover span {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            padding-top: 50px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="back-container" onclick="window.history.back();">
+        <img src="https://icons.veryicon.com/png/o/miscellaneous/arrows/go-back-2.png" alt="Back">
+        <span>Back</span>
+    </div>
+
+    <div class="container">
+        <h1>Aggiungi Torneo</h1>
+        <form action="php/salva_torneo.php" method="post">
+    <label for="nome_torneo">Nome Torneo:</label>
+    <input type="text" id="nome_torneo" name="nome_torneo" required>
+
+    <label for="data_inizio">Data Inizio:</label>
+    <input type="date" id="data_inizio" name="data_inizio" required>
+
+    <label for="data_fine">Data Fine:</label>
+    <input type="date" id="data_fine" name="data_fine" required>
+
+    <label for="campo_id">Tipo di Campo:</label>
+    <select id="campo_id" name="campo_id" required>
+        <option value="Campo US Open">Campo US Open</option>
+        <option value="Campo Australian Open">Campo Australian Open</option>
+        <option value="Campo ATP">Campo ATP</option>
+    </select>
+
+    <button type="submit">Crea Torneo</button>
+</form>
+<script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('data_inizio').setAttribute('min', today);
+    document.getElementById('data_fine').setAttribute('min', today);
+
+    document.getElementById('data_inizio').addEventListener('change', function() {
+        document.getElementById('data_fine').setAttribute('min', this.value);
+    });
+</script>
+    </div>
+</body>
+</html>

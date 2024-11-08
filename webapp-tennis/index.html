@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesso - Web App Tennis</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #d3e7da; /* Verde chiaro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center; 
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%; 
+            max-width: 400px; 
+            text-align: center;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 20px); 
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .register-link {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            width: 100%;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bentornato nel Tennis Booking</h1>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="php/login.php" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Accedi</button>
+        </form>
+        <div class="register-link">
+            <p>Ancora non ti sei registrato? <a href="register.html">Registrati</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
