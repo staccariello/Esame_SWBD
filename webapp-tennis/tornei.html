@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tornei Attivi</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #d3e7da;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+        }
+
+        .logo {
+            width: 150px; /* Regola la dimensione dell'immagine del logo */
+            height: auto;
+        }
+
+        .container {
+            width: 40%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .banner {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .banner h2 {
+            margin: 0 0 10px 0;
+        }
+
+        .banner p {
+            margin: 5px 0;
+        }
+
+        .back-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .back-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .back-container span {
+            font-size: 16px;
+            color: white; /* Colore del testo "Back" cambiato in bianco */
+            text-decoration: none;
+        }
+
+        .back-container:hover span {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-container" onclick="window.location.href='home.html';">
+    <img src="https://icons.veryicon.com/png/o/miscellaneous/arrows/go-back-2.png" alt="Back">
+    <span>Back</span>
+</div>
+
+
+
+    <header>
+        <img src="logo.png" alt="Tennis Booking Logo" class="logo">
+        <h2>TORNEI ATTIVI</h2>
+    </header>
+    <div class="container">
+        <h1>Tornei Attivi</h1>
+        <div id="tornei-container">
+            <!-- I tornei verranno caricati qui tramite AJAX -->
+        </div>
+    </div>
+
+    <script>
+        // Funzione per caricare i tornei tramite AJAX
+        function loadTornei() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'php/tornei.php', true);
+
+            xhr.onload = function() {
+                if (this.status === 200) {
+                    document.getElementById('tornei-container').innerHTML = this.responseText;
+                } else {
+                    document.getElementById('tornei-container').innerHTML = '<p>Errore nel caricamento dei tornei.</p>';
+                }
+            };
+
+            xhr.send();
+        }
+
+        // Carica i tornei quando la pagina è pronta
+        window.onload = loadTornei;
+    </script>
+</body>
+</html>

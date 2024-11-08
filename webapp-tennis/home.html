@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Tennis Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+    background-color: #d3e7da; /* Verde chiaro */
+       font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+        /* Header style */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+        }
+
+        /* Stile per l'immagine del logo */
+        .logo {
+            width: 150px; /* Regola la dimensione dell'immagine del logo */
+            height: auto;
+        }
+
+        header h1 {
+            color: black;
+        }
+
+        .profile-icon {
+            width: 60px; /* Doppio della dimensione precedente */
+            height: 60px;
+            cursor: pointer;
+        }
+	.profile-button {
+    position: absolute;
+    top: 25px; /* Distanza dal bordo superiore */
+    right: 25px; /* Distanza dal bordo destro */
+    width: 60px; /* Larghezza del pulsante */
+    height: 60px; /* Altezza del pulsante */
+    border: none; /* Rimuove il bordo del pulsante */
+    background: none; /* Rimuove lo sfondo del pulsante */
+    padding: 0; /* Rimuove il padding */
+    margin: 0; /* Rimuove il margine */
+    cursor: pointer; /* Mostra il puntatore come "mano" */
+}
+
+        /* Banner layout */
+        .banner-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .banner {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Assicura che i pulsanti siano allineati in basso */
+        }
+
+        .banner img {
+    	    width: 200px;
+            height: 170px;
+            object-fit: center; /* Mantiene proporzioni adeguate, riempiendo l'area */
+            border-radius: 10px;
+}
+
+
+        .banner h2 {
+            margin-top: 15px;
+        }
+
+        .availability-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            align-self: flex-end; /* Allinea il pulsante in fondo al banner */
+        }
+
+        .availability-link:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer banner */
+        .tournament-banner {
+            background-color: white;
+            padding: 30px;
+            text-align: center;
+            margin: 20px auto;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tournament-banner a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .tournament-banner a:hover {
+            background-color: #45a049;
+        }
+	.tournament-banner img {
+    	    width: 900px;
+            height: 300px;
+            object-fit: center; /* Mantiene proporzioni adeguate, riempiendo l'area */
+            border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+	<?php include 'main.php'; ?>
+    <header>
+        <img src="logo.png" alt="Tennis Booking Logo" class="logo">
+
+	<form id="profileForm" action="php/main.php" method="post" style="display:none;">
+    <input type="hidden" name="action" value="getProfileUrl">
+</form>
+
+<!-- Icona del profilo come immagine cliccabile -->
+<button type="submit" class="profile-button" form="profileForm">
+    <img src="https://static.vecteezy.com/system/resources/previews/020/911/729/non_2x/profile-icon-avatar-icon-user-icon-person-icon-free-png.png" alt="Profilo" class="profile-icon">
+</button>
+    </header>
+
+    <section class="banner-container">
+        <div class="banner">
+            <img src="https://www.merlisport.com/wp-content/uploads/2020/10/campo-tennis-resina-495x338.jpg"> <!-- Immagine locale -->
+            <h2>Campo in Cemento</h2>
+            <a href="disponibilita_cemento.html" class="availability-link">Controlla disponibilità →</a>
+        </div>
+        <div class="banner">
+            <img src="https://www.merlisport.com/wp-content/uploads/2020/10/campo-tennis-erba-sintetica.jpg"> <!-- Immagine locale -->
+            <h2>Campo in Erba</h2>
+            <a href="disponibilita_erba.html" class="availability-link">Controlla disponibilità →</a>
+        </div>
+        <div class="banner">
+            <img src="https://www.merlisport.com/wp-content/uploads/2020/10/campo-tennis-terra-rossa-evoluta-1.jpg"> <!-- Immagine locale -->
+            <h2>Campo in Terra Rossa</h2>
+            <a href="disponibilita_terra.html" class="availability-link">Controlla disponibilità →</a>
+        </div>
+            </section>
+
+    <section class="tournament-banner">
+        <h2>Tornei Attivi</h2>
+	<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjhnNnI2M3pmNjJzdnp2MjkzdWVleGUyanAzOG5ldHR3bHByaDB2cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6m8xUJgG2dqQ8/giphy.webp" class="logo">
+        <a href="tornei.html">Visualizza tornei attivi →</a>
+    </section>
+
+</body>
+</html>
